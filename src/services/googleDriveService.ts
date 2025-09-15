@@ -1,11 +1,12 @@
-// Google Drive API Service for Resume Upload using Backend API (No CORS issues)
 export class GoogleDriveService {
   private static instance: GoogleDriveService;
-
-  // Google Drive API configuration from environment variables
   private readonly API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
-  private constructor() {}
+  private constructor() {
+    if (!this.API_URL) {
+      console.warn('VITE_API_URL is not set in environment variables. Using default: http://localhost:3001');
+    }
+  }
 
   public static getInstance(): GoogleDriveService {
     if (!GoogleDriveService.instance) {
@@ -14,7 +15,6 @@ export class GoogleDriveService {
     return GoogleDriveService.instance;
   }
 
-  // Convert file to base64 for backend upload
   private async fileToBase64(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -24,17 +24,17 @@ export class GoogleDriveService {
     });
   }
 
-  // Upload file via backend API (avoids CORS issues)
   async uploadFile(file: File, applicantName: string): Promise<string> {
     try {
       console.log('Converting file to base64...');
       const fileData = await this.fileToBase64(file);
 
-      console.log('Uploading to backend...');
+      console.log(`Uploading to backend at ${this.API_URL}...`);
       const response = await fetch(`${this.API_URL}/api/upload-resume`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify({
           fileName: file.name,
@@ -56,11 +56,6 @@ export class GoogleDriveService {
       console.error('File upload error:', error);
       throw error;
     }
-  }
-
-  // Get file download link (helper method)
-  getDownloadLink(fileId: string): string {
-    return `https://drive.google.com/uc?export=download&id=${fileId}`;
   }
 }
 

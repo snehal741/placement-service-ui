@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Mail, Phone, Send, CheckCircle, AlertCircle} from 'lucide-react';
+import {Mail, Phone, Send, CheckCircle, AlertCircle, X} from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import GoogleDriveService from '../services/googleDriveService';
 
@@ -88,21 +88,18 @@ const Contact = () => {
             );
 
             setIsSubmitted(true);
-            setTimeout(() => {
-                setIsSubmitted(false);
-                setFormData({
-                    name: '',
-                    email: '',
-                    phone: '',
-                    experience: '',
-                    position: '',
-                    resume: null,
-                    message: ''
-                });
-                // Reset file input
-                const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
-                if (fileInput) fileInput.value = '';
-            }, 5000);
+            setFormData({
+                name: '',
+                email: '',
+                phone: '',
+                experience: '',
+                position: '',
+                resume: null,
+                message: ''
+            });
+            // Reset file input
+            const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+            if (fileInput) fileInput.value = '';
 
         } catch (error) {
             console.error('EmailJS Error:', error);
@@ -110,6 +107,10 @@ const Contact = () => {
         } finally {
             setIsSubmitting(false);
         }
+    };
+
+    const handleNewSubmission = () => {
+        setIsSubmitted(false);
     };
 
     return (
@@ -135,7 +136,7 @@ const Contact = () => {
                                 </div>
                                 <div>
                                     <h4 className="font-semibold text-gray-900">Email</h4>
-                                    <p className="text-gray-600">info@mauliplacements.com</p>
+                                    <p className="text-gray-600">mauleeplacement@gmail.com</p>
                                 </div>
                             </div>
                             <div className="flex items-center space-x-4">
@@ -144,7 +145,7 @@ const Contact = () => {
                                 </div>
                                 <div>
                                     <h4 className="font-semibold text-gray-900">Phone</h4>
-                                    <p className="text-gray-600">+91 98765 43210</p>
+                                    <p className="text-gray-600">+91 98812 20653</p>
                                 </div>
                             </div>
                         </div>
@@ -153,15 +154,28 @@ const Contact = () => {
 
                     <div>
                         {isSubmitted ? (
-                            <div className="bg-green-50 p-8 rounded-lg text-center">
+                            <div className="bg-green-50 p-8 rounded-lg text-center relative">
+                                <button
+                                    onClick={handleNewSubmission}
+                                    className="absolute top-4 right-4 p-1 rounded-full hover:bg-green-100 transition-colors"
+                                    aria-label="Start new submission"
+                                >
+                                    <X className="text-green-600" size={20} />
+                                </button>
                                 <CheckCircle className="text-green-500 mx-auto mb-4" size={48}/>
                                 <h3 className="text-2xl font-bold text-green-800 mb-2">
                                     Thank You!
                                 </h3>
-                                <p className="text-green-700">
+                                <p className="text-green-700 mb-4">
                                     Your resume has been successfully submitted. We'll review your application
                                     and get back to you within 24 hours.
                                 </p>
+                                <button
+                                    onClick={handleNewSubmission}
+                                    className="mt-4 inline-flex items-center justify-center px-6 py-2 border border-green-600 text-green-600 rounded-lg hover:bg-green-600 hover:text-white transition-colors"
+                                >
+                                    Submit Another Application
+                                </button>
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-6">

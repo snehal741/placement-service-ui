@@ -49,11 +49,11 @@ const Header = () => {
           <div className="hidden lg:flex items-center space-x-4">
             <div className="flex items-center space-x-1 text-sm text-gray-600">
               <Phone size={16} />
-              <span>+91 98765 43210</span>
+              <span>+91 98812 20653</span>
             </div>
             <div className="flex items-center space-x-1 text-sm text-gray-600">
               <Mail size={16} />
-              <span>info@mauliplacements.com</span>
+              <span>mauleeplacement@gmail.com</span>
             </div>
           </div>
 

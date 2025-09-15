@@ -44,25 +44,6 @@ const Hero = () => {
             />
           </div>
         </div>
-
-        {/* Stats Section */}
-        {/*<div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">*/}
-        {/*  <div className="text-center p-6">*/}
-        {/*    <Users size={48} className="mx-auto text-emerald-400 mb-4" />*/}
-        {/*    <h3 className="text-2xl font-bold">Expert Team</h3>*/}
-        {/*    <p className="text-blue-100 mt-2">Professional recruitment specialists with years of experience</p>*/}
-        {/*  </div>*/}
-        {/*  <div className="text-center p-6">*/}
-        {/*    <Briefcase size={48} className="mx-auto text-emerald-400 mb-4" />*/}
-        {/*    <h3 className="text-2xl font-bold">Quality Jobs</h3>*/}
-        {/*    <p className="text-blue-100 mt-2">Curated opportunities from top-tier companies across industries</p>*/}
-        {/*  </div>*/}
-        {/*  <div className="text-center p-6">*/}
-        {/*    <TrendingUp size={48} className="mx-auto text-emerald-400 mb-4" />*/}
-        {/*    <h3 className="text-2xl font-bold">Career Growth</h3>*/}
-        {/*    <p className="text-blue-100 mt-2">Focus on long-term career advancement and professional development</p>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
       </div>
     </section>
   );
