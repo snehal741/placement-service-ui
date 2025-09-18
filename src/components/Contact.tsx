@@ -40,10 +40,39 @@ const Contact = () => {
         }
     };
 
+    const validateForm = () => {
+        if (!formData.name.trim()) return 'Full Name is required.';
+        if (!formData.email.trim()) return 'Email Address is required.';
+        // Simple email regex
+        if (!/^\S+@\S+\.\S+$/.test(formData.email)) return 'Please enter a valid email address.';
+        if (!formData.phone.trim()) return 'Phone Number is required.';
+        // Simple phone validation (10+ digits)
+        if (!/^\+?\d{10,}$/.test(formData.phone.replace(/\s/g, ''))) return 'Please enter a valid phone number.';
+        if (!formData.resume) return 'Resume/CV is required.';
+        // File type validation
+        if (formData.resume) {
+            const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+            if (!allowedTypes.includes(formData.resume.type)) {
+                return 'Accepted formats: PDF, DOC, DOCX only.';
+            }
+            if (formData.resume.size > 100 * 1024 * 1024) {
+                return 'File size must be less than 100MB.';
+            }
+        }
+        return '';
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
         setError('');
+
+        const validationError = validateForm();
+        if (validationError) {
+            setError(validationError);
+            setIsSubmitting(false);
+            return;
+        }
 
         try {
             // Initialize EmailJS with environment variables
@@ -153,6 +182,10 @@ const Contact = () => {
                     </div>
 
                     <div>
+                        {/* Payment note above the form */}
+                        <div className="mb-6 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <span className="text-yellow-800 font-semibold">Note:</span> A non-refundable fee of <span className="font-bold">₹1000</span> is required for resume processing. Our team will contact you after reviewing your submission.
+                        </div>
                         {isSubmitted ? (
                             <div className="bg-green-50 p-8 rounded-lg text-center relative">
                                 <button
