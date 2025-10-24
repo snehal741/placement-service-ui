@@ -212,13 +212,6 @@ const Contact = () => {
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-6">
-                                {error && (
-                                    <div
-                                        className="bg-red-50 border border-red-200 p-4 rounded-lg flex items-center space-x-2">
-                                        <AlertCircle className="text-red-500" size={20}/>
-                                        <span className="text-red-700">{error}</span>
-                                    </div>
-                                )}
 
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -342,6 +335,14 @@ const Contact = () => {
                                         placeholder="Tell us about your career goals or any specific requirements..."
                                     ></textarea>
                                 </div>
+
+                                {error && (
+                                    <div
+                                        className="bg-red-50 border border-red-200 p-4 rounded-lg flex items-center space-x-2">
+                                        <AlertCircle className="text-red-500" size={20}/>
+                                        <span className="text-red-700">{error}</span>
+                                    </div>
+                                )}
 
                                 <button
                                     type="submit"
