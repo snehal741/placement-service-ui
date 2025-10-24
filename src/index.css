@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom animations */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
 /* Custom scrollbar styles */
 @layer utilities {
   .scrollbar-hide {

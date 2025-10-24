@@ -16,13 +16,15 @@ const Services = () => {
             icon: <Shield size={40}/>,
             title: "Document Verification",
             description: "Ensuring authenticity and accuracy of candidate documents for a reliable hiring process."
-        },
-        {
-            icon: <Mic2 size={40}/>,
-            title: "Interview Guidance",
-            description: "Providing candidates with tips and strategies to excel in job interviews."
         }
     ];
+
+    const interviewGuidance = {
+        icon: <Mic2 size={56} className="text-blue-600" />,
+        title: "Interview Guidance",
+        description: "Ace your interviews with expert tips, personalized coaching, and proven strategies to help you stand out and succeed.",
+        highlight: "Main Focus Service"
+    };
 
     const statutoryServices = [
         {
@@ -62,6 +64,20 @@ const Services = () => {
         </div>
     );
 
+    const InterviewGuidanceCard = ({ service }: { service: typeof interviewGuidance }) => (
+        <div className="bg-emerald-100 p-12 shadow-[0_12px_48px_rgba(0,0,0,0.25)] flex flex-col items-center justify-center mb-16 mx-auto max-w-2xl animate-[breathe_3s_ease-in-out_infinite]">
+            <div className="mb-4 opacity-100">
+                {service.icon}
+            </div>
+            <h3 className="text-3xl font-extrabold text-gray-900 mb-3 drop-shadow-lg opacity-100">
+                {service.title}
+            </h3>
+            <p className="text-lg text-gray-700 mb-2 text-center opacity-100">
+                {service.description}
+            </p>
+        </div>
+    );
+
     return (
         <section id="services" className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,7 +90,10 @@ const Services = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
+                {/* Interview Guidance Main Focus Card */}
+                <InterviewGuidanceCard service={interviewGuidance} />
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
                     {services.map((service, index) => (
                         <ServiceCard key={index} service={service} />
                     ))}
@@ -100,3 +119,4 @@ const Services = () => {
 };
 
 export default Services;
+
