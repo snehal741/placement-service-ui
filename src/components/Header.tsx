@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import {Menu, X, Mail, Phone} from 'lucide-react';
+import logo from '../assets/logo1.png';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,9 +13,14 @@ const Header = () => {
     return (
         <header className="bg-white shadow-lg fixed w-full top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center py-4">
-                    <div className="flex items-center">
-                        <h1 className="text-2xl font-bold text-blue-800">Mauli Placements</h1>
+                <div className="flex justify-between items-center py-2">
+                    <div className="flex items-center space-x-3">
+                        <img
+                            src={logo}
+                            alt="Mauli Placements Logo"
+                            className="h-16 w-16 object-contain"
+                        />
+                        <h1 className="text-2xl font-extrabold text-blue-800 tracking-wide font-sans">Mauli Placement & Consultancy</h1>
                     </div>
 
                     {/* Desktop Navigation */}

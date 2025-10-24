@@ -1,4 +1,4 @@
-import {Search, UserCheck, Shield, Mic2} from 'lucide-react';
+import {Search, UserCheck, Shield, Mic2, Building2, HeartPulse, Factory} from 'lucide-react';
 
 const Services = () => {
     const services = [
@@ -24,9 +24,48 @@ const Services = () => {
         }
     ];
 
+    const statutoryServices = [
+        {
+            icon: <Building2 size={40}/>,
+            title: "EPFO",
+            description: "• Effective - Inspection & Hearing with PF commissioner of 7-A, 14B, 7Q cases\n" +
+                "• Submission of regular challans and maintaining all records\n" +
+                "• PF Registration of new unit"
+        },
+        {
+            icon: <HeartPulse size={40}/>,
+            title: "ESIC",
+            description: "• Effective - Inspection & Hearing with ESI Commissioner\n" +
+                "• Submission of regular challans and maintaining all records.\n" +
+                "• ESIC Registration of new unit."
+        },
+        {
+            icon: <Factory size={40}/>,
+            title: "DISH (Factory Inspector)",
+            description: "• Registration of new unit & Licence.\n" +
+                "• Renewal of Factory Licence.\n" +
+                "• Submission of yearly return.\n"
+        }
+    ];
+
+    const ServiceCard = ({ service }: { service: typeof services[0] }) => (
+        <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <div className="text-blue-600 mb-4">
+                {service.icon}
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                {service.title}
+            </h3>
+            <p className="text-gray-600 leading-relaxed whitespace-pre-line">
+                {service.description}
+            </p>
+        </div>
+    );
+
     return (
         <section id="services" className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Placement Services */}
                 <div className="text-center mb-16">
                     <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
                     <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -35,22 +74,24 @@ const Services = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
                     {services.map((service, index) => (
-                        <div
-                            key={index}
-                            className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                        >
-                            <div className="text-blue-600 mb-4">
-                                {service.icon}
-                            </div>
-                            <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                                {service.title}
-                            </h3>
-                            <p className="text-gray-600 leading-relaxed">
-                                {service.description}
-                            </p>
-                        </div>
+                        <ServiceCard key={index} service={service} />
+                    ))}
+                </div>
+
+                {/* Statutory Services */}
+                <div className="text-center mb-16">
+                    <h2 className="text-4xl font-bold text-gray-900 mb-4">Statutory Compliances</h2>
+                    <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Comprehensive assistance with legal and regulatory requirements to ensure your business
+                        stays compliant with all necessary regulations.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {statutoryServices.map((service, index) => (
+                        <ServiceCard key={index} service={service} />
                     ))}
                 </div>
             </div>
