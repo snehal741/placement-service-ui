@@ -184,7 +184,7 @@ const Contact = () => {
                     <div>
                         {/* Payment note above the form */}
                         <div className="mb-6 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
-                            <span className="text-yellow-800 font-semibold">Note:</span> A non-refundable fee of <span className="font-bold">₹1000</span> is required for resume processing. Our team will contact you after reviewing your submission.
+                            <span className="text-yellow-800 font-semibold">Note:</span> A non-refundable fee of <span className="font-bold">₹500 for freshers & ₹1000 for experienced</span> is required for resume processing. Our team will contact you after reviewing your submission.
                         </div>
                         {isSubmitted ? (
                             <div className="bg-green-50 p-8 rounded-lg text-center relative">
